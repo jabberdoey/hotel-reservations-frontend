@@ -5,7 +5,10 @@ import hash_sum from "hash-sum";
 export async function fetchReservations() {
   try {
     const fetchData = async () => {
-      const response = await fetch(process.env.BACKEND_API || "");
+      const response = await fetch(process.env.BACKEND_API || "", {
+        method: "GET",
+        cache: "no-cache",
+      });
       const data = await response.json();
       return data;
     }

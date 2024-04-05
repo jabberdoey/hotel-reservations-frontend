@@ -3,7 +3,6 @@
 import { useState } from "react";
 import DatePicker from "react-datepicker";
 import { Reservation, ReservationData, Status } from "@/lib/types/types";
-import Link from "next/link";
 import "react-datepicker/dist/react-datepicker.css";
 import "@/app/reservations.css";
 
@@ -44,19 +43,22 @@ export default function Reservations({
           </span>
         </p>
         <div className="mt-20 text-lg">
-          <Link
-            href="/"
-            className="font-semibold bg-blue-600 text-white py-4 px-6 rounded-[5px] hover:bg-blue-900"
+          <span
+            onClick={() => {
+              setConfirmation(null);
+              window.location.href = "/";
+            }}
+            className="cursor-pointer font-semibold bg-blue-600 text-white py-4 px-6 rounded-[5px] hover:bg-blue-900"
           >
             Make a new reservation
-          </Link>
+          </span>
         </div>
       </div>
     );
   }
 
   return (
-    <div>
+    <div className="transition-opacity duration-300 opacity-0 opacity-100">
       <form onSubmit={async (event) => { 
         event.preventDefault();
         const availableRoom = availableRooms.find(reservation => reservation.status === "Available");
