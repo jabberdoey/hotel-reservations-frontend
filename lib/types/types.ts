@@ -20,3 +20,8 @@ export type ReservationData = {
     checkOutDate: Date | null;
     status: Status;
 }
+
+export type CheckOutData = {
+    room: number;
+    name: string;
+}

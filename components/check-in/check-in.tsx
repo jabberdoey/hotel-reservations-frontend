@@ -6,7 +6,7 @@ import { Reservation, ReservationData, Status } from "@/lib/types/types";
 import "react-datepicker/dist/react-datepicker.css";
 import "@/app/reservations.css";
 
-export default function Reservations({
+export default function CheckIn({
   reservations,
   onFormSubmit,
 }: {
@@ -25,7 +25,7 @@ export default function Reservations({
   const availableRooms = reservations.filter(reservation => reservation.status === "Available");
   if (availableRooms.length === 0) {
     return (
-      <div className="font-bold text-2xl text-center">
+      <div className="font-bold text-2xl text-center mt-10">
         <p>There are no rooms available right now.</p>
         <p>Please try again at a later time.</p>
       </div>
@@ -34,7 +34,7 @@ export default function Reservations({
 
   if (confirmation) {
     return (
-      <div className="text-2xl text-center leading-10">
+      <div className="text-2xl text-center leading-10 mt-10">
         <p className="font-bold">Reservation confirmed!</p>
         <p className="font-normal text-lg mb-16">Please save the following confirmation code for your reference:</p>
         <p className="text-red-500">
@@ -42,17 +42,6 @@ export default function Reservations({
             {confirmation}
           </span>
         </p>
-        <div className="mt-20 text-lg">
-          <span
-            onClick={() => {
-              setConfirmation(null);
-              window.location.href = "/";
-            }}
-            className="cursor-pointer font-semibold bg-blue-600 text-white py-4 px-6 rounded-[5px] hover:bg-blue-900"
-          >
-            Make a new reservation
-          </span>
-        </div>
       </div>
     );
   }
@@ -64,7 +53,7 @@ export default function Reservations({
         const availableRoom = availableRooms.find(reservation => reservation.status === "Available");
         if (!availableRoom) return;
         
-        const confirmation = await onFormSubmit({
+        const formConfirmation = await onFormSubmit({
           room: availableRoom.room,
           name,
           checkInDate,
@@ -72,7 +61,7 @@ export default function Reservations({
           status: Status.UNAVAILABLE,
         });
 
-        setConfirmation(confirmation);
+        setConfirmation(formConfirmation);
       }}>
         <div className="my-5">
           <label className="text-xs uppercase font-semibold text-slate-400">Available rooms:</label>
@@ -80,7 +69,7 @@ export default function Reservations({
         </div>
         <div className="my-5">
           <label className="text-xs uppercase font-semibold text-slate-400">Name</label>
-          <div className="">
+          <div>
             <input
               required
               className="border border-[#ddd] px-[10px] py-[5px] rounded-[5px] text-black"
@@ -113,7 +102,7 @@ export default function Reservations({
         </div>
         <div className="mt-10">
           <button className="font-semibold bg-blue-600 text-white px-4 py-2 rounded-[5px] hover:bg-blue-900">
-            Make a reservation
+            Check in
           </button>
         </div>
       </form>
