@@ -2,33 +2,15 @@
 
 import Reservations from "@/components/reservations/reservations";
 import { ReservationData } from "@/lib/types/types";
-import dotenv from "dotenv/config";
-
-async function fetchReservations() {
-  try {
-    const fetchData = async () => {
-      const response = await fetch(process.env.BACKEND_API || "");
-      const data = await response.json();
-      return data;
-    }
-    return fetchData();
-  } catch(error) {
-    console.error(`Error fetching data: ${error}`);
-    return [];
-  }
-}
+import { fetchReservations, makeReservation } from "@/lib/actions/actions";
 
 export default async function Page() {
   const reservations = await fetchReservations();
 
-  async function handleOnFormSubmit({
-    name,
-    checkInDate,
-    checkOutDate,
-  }: ReservationData) {
+  async function handleOnFormSubmit(data: ReservationData): Promise<string> {
     "use server";
-
-    console.log(name, checkInDate, checkOutDate)
+    const reservation = await makeReservation(data);
+    return reservation?.data?.confirmation || null;
   }
 
   return (

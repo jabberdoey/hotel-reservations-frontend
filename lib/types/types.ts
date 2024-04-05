@@ -1,4 +1,4 @@
-enum Status {
+export enum Status {
     AVAILABLE = 'Available',
     UNAVAILABLE = 'Unavailable',
 }
@@ -14,7 +14,9 @@ export type Reservation = {
 }
 
 export type ReservationData = {
+    room: number;
     name: string;
     checkInDate: Date | null;
     checkOutDate: Date | null;
+    status: Status;
 }

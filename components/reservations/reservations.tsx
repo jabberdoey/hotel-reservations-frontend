@@ -2,7 +2,8 @@
 
 import { useState } from "react";
 import DatePicker from "react-datepicker";
-import { Reservation, ReservationData } from "@/lib/types/types";
+import { Reservation, ReservationData, Status } from "@/lib/types/types";
+import Link from "next/link";
 import "react-datepicker/dist/react-datepicker.css";
 import "@/app/reservations.css";
 
@@ -11,7 +12,7 @@ export default function Reservations({
   onFormSubmit,
 }: {
   reservations: Reservation[];
-  onFormSubmit: (data: ReservationData) => void;
+  onFormSubmit: (data: ReservationData) => Promise<string>;
 }) {
   const today = new Date();
   const tomorrow = new Date(today);
@@ -20,6 +21,7 @@ export default function Reservations({
   const [name, setName] = useState("");
   const [checkInDate, setCheckInDate] = useState<Date | null>(today);
   const [checkOutDate, setCheckOutDate] = useState<Date | null>(tomorrow);
+  const [confirmation, setConfirmation] = useState<string | null>(null);
 
   const availableRooms = reservations.filter(reservation => reservation.status === "Available");
   if (availableRooms.length === 0) {
@@ -31,11 +33,44 @@ export default function Reservations({
     );
   }
 
+  if (confirmation) {
+    return (
+      <div className="text-2xl text-center leading-10">
+        <p className="font-bold">Reservation confirmed!</p>
+        <p className="font-normal text-lg mb-16">Please save the following confirmation code for your reference:</p>
+        <p className="text-red-500">
+          <span className="bg-slate-200 px-20 py-5">
+            {confirmation}
+          </span>
+        </p>
+        <div className="mt-20 text-lg">
+          <Link
+            href="/"
+            className="font-semibold bg-blue-600 text-white py-4 px-6 rounded-[5px] hover:bg-blue-900"
+          >
+            Make a new reservation
+          </Link>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div>
-      <form onSubmit={(event) => { 
+      <form onSubmit={async (event) => { 
         event.preventDefault();
-        onFormSubmit({ name, checkInDate, checkOutDate });
+        const availableRoom = availableRooms.find(reservation => reservation.status === "Available");
+        if (!availableRoom) return;
+        
+        const confirmation = await onFormSubmit({
+          room: availableRoom.room,
+          name,
+          checkInDate,
+          checkOutDate,
+          status: Status.UNAVAILABLE,
+        });
+
+        setConfirmation(confirmation);
       }}>
         <div className="my-5">
           <label className="text-xs uppercase font-semibold text-slate-400">Available rooms:</label>
