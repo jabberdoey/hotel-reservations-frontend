@@ -12,13 +12,24 @@ export default function CheckOut({
   const [room, setRoom] = useState("");
   const [status, setStatus] = useState<string | null>(null);
 
-  if (status === "Available") {
-    return (
-      <div className="text-2xl text-center leading-10 mt-10">
-        <p className="font-bold">You have successfully checked out!</p>
-        <p className="font-normal text-lg mb-16">Book with us again soon.</p>
-      </div>
-    );
+  switch(status) {
+    case "Available": {
+      return (
+        <div className="text-2xl text-center leading-10 mt-10">
+          <p className="font-bold">You have successfully checked out!</p>
+          <p className="font-normal text-lg mb-16">Book with us again soon.</p>
+        </div>
+      );
+    }
+
+    case "Error": {
+      return (
+        <div className="text-2xl text-center leading-10 mt-10">
+          <p className="font-bold text-red-600">Booking information not found!</p>
+          <p className="font-normal text-lg mb-16">Please check your input values and then try again.</p>
+        </div>
+      );
+    }
   }
 
   return (

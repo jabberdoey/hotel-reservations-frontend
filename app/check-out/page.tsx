@@ -1,7 +1,6 @@
 "use server";
 
 import CheckOut from "@/components/check-out/check-out";
-import Link from "next/link";
 import { checkOut } from "@/lib/actions/actions";
 import { CheckOutData } from "@/lib/types/types";
 
@@ -15,15 +14,17 @@ export default async function Page() {
   
   return (
     <div className="container mx-auto p-10">
-      <Link
-        href="/"
-        className="text-blue-600 underline hover:text-blue-800"
-      >
-        &larr; Go back
-      </Link>
-      <CheckOut
-        onFormSubmit={handleOnFormSubmit}
-      />
+      <div className="flex flex-col items-center justify-center">
+        <a
+          href="/"
+          className="text-blue-600 underline hover:text-blue-800"
+        >
+          &larr; Go back
+        </a>
+        <CheckOut
+          onFormSubmit={handleOnFormSubmit}
+        />
+      </div>
     </div>
   );
 }

@@ -11,6 +11,7 @@ export type Reservation = {
     checkOutDate: string;
     createdAt: string;
     updatedAt: string;
+    confirmation: string;
 }
 
 export type ReservationData = {

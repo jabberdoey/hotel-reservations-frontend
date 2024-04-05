@@ -11,7 +11,10 @@ export default function CheckIn({
   onFormSubmit,
 }: {
   reservations: Reservation[];
-  onFormSubmit: (data: ReservationData) => Promise<string>;
+  onFormSubmit: (data: ReservationData) => Promise<{
+    room: number;
+    confirmation: string;
+  }>;
 }) {
   const today = new Date();
   const tomorrow = new Date(today);
@@ -21,6 +24,7 @@ export default function CheckIn({
   const [checkInDate, setCheckInDate] = useState<Date | null>(today);
   const [checkOutDate, setCheckOutDate] = useState<Date | null>(tomorrow);
   const [confirmation, setConfirmation] = useState<string | null>(null);
+  const [assignedRoom, setAssignedRoom] = useState<number | null>(null);
 
   const availableRooms = reservations.filter(reservation => reservation.status === "Available");
   if (availableRooms.length === 0) {
@@ -32,28 +36,43 @@ export default function CheckIn({
     );
   }
 
-  if (confirmation) {
+  if (confirmation && assignedRoom) {
     return (
       <div className="text-2xl text-center leading-10 mt-10">
         <p className="font-bold">Reservation confirmed!</p>
-        <p className="font-normal text-lg mb-16">Please save the following confirmation code for your reference:</p>
-        <p className="text-red-500">
-          <span className="bg-slate-200 px-20 py-5">
-            {confirmation}
-          </span>
-        </p>
+        <p className="font-normal text-lg">Please save the following for your reference:</p>
+        <div className="mt-10">
+          <div className="flex flex-col items-center justify-center my-5">
+            <label className="mb-5 uppercase text-sm font-bold">Name:</label>
+            <span className="bg-slate-200 px-20 py-5 text-red-500 font-extrabold">
+              {name}
+            </span>
+          </div>
+          <div className="flex flex-col items-center justify-center my-5">
+            <label className="mb-5 uppercase text-sm font-bold">Room:</label>
+            <span className="bg-slate-200 px-20 py-5 text-red-500 font-extrabold">
+              {assignedRoom}
+            </span>
+          </div>
+          <div className="flex flex-col items-center justify-center my-5">
+            <label className="mb-5 uppercase text-sm font-bold">Code:</label>
+            <span className="bg-slate-200 px-20 py-5 text-red-500 font-extrabold">
+              {confirmation}
+            </span>
+          </div>
+        </div>
       </div>
     );
   }
 
   return (
-    <div className="transition-opacity duration-300 opacity-0 opacity-100">
+    <div>
       <form onSubmit={async (event) => { 
         event.preventDefault();
         const availableRoom = availableRooms.find(reservation => reservation.status === "Available");
         if (!availableRoom) return;
         
-        const formConfirmation = await onFormSubmit({
+        const data = await onFormSubmit({
           room: availableRoom.room,
           name,
           checkInDate,
@@ -61,7 +80,8 @@ export default function CheckIn({
           status: Status.UNAVAILABLE,
         });
 
-        setConfirmation(formConfirmation);
+        setConfirmation(data.confirmation);
+        setAssignedRoom(data.room);
       }}>
         <div className="my-5">
           <label className="text-xs uppercase font-semibold text-slate-400">Available rooms:</label>

@@ -60,9 +60,10 @@ export async function checkIn(data: ReservationData) {
 }
 
 export async function checkOut(data: CheckOutData) {
-  const existingRoom = await fetchReservation(data.room);
-  if (existingRoom.data.name !== data.name && existingRoom.data.room !== data.room) {
-    return null;
+  const existingRoom = await fetchReservation(Number(data.room));
+  const error = { data: { status: "Error" } }
+  if (existingRoom.data.name !== data.name || existingRoom.data.room !== data.room) {
+    return error;
   }
 
   try {
@@ -86,6 +87,6 @@ export async function checkOut(data: CheckOutData) {
     return patchData();
   } catch(error) {
     console.error(`Error making a reservation: ${error}`)
-    return null;
+    return error;
   }
 }
