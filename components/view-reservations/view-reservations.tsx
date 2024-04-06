@@ -47,7 +47,7 @@ export default function ViewReservations({
       <div className="md:hidden mt-10">
         <ul>
           {filteredReservations.map((reservation, index) => (
-            <li className="p-5 rounded-lg gap-2 flex flex-col border items-left justify-center" key={index}>
+            <li className="p-5 rounded-lg gap-2 flex flex-col border items-left justify-center mb-5" key={index}>
               <div>
                 <label className="uppercase font-bold mr-2 text-sm uppercase text-slate-600">Name:</label>
                 <span>{reservation.name}</span>
