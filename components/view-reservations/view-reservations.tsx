@@ -22,7 +22,7 @@ export default function ViewReservations({
 
   return (
     <div>
-      <table className="view-reservations mt-10">
+      <table className="view-reservations mt-10 hidden md:block">
         <thead>
           <tr>
             <th scope="col">Name</th>
@@ -44,6 +44,34 @@ export default function ViewReservations({
           ))}
         </tbody>
       </table>
+      <div className="md:hidden mt-10">
+        <ul>
+          {filteredReservations.map((reservation, index) => (
+            <li className="p-5 rounded-lg gap-2 flex flex-col border items-left justify-center" key={index}>
+              <div>
+                <label className="uppercase font-bold mr-2 text-sm uppercase text-slate-600">Name:</label>
+                <span>{reservation.name}</span>
+              </div>
+              <div>
+                <label className="uppercase font-bold mr-2 text-sm uppercase text-slate-600">Room:</label>
+                <span>{reservation.room}</span>
+              </div>
+              <div>
+                <label className="uppercase font-bold mr-2 text-sm uppercase text-slate-600">Check in:</label>
+                <span>{format(reservation.checkInDate, "MMMM d, yyyy")}</span>
+              </div>
+              <div>
+                <label className="uppercase font-bold mr-2 text-sm uppercase text-slate-600">Check out:</label>
+                <span>{format(reservation.checkOutDate, "MMMM d, yyyy")}</span>
+              </div>
+              <div>
+                <label className="uppercase font-bold mr-2 text-sm uppercase text-slate-600">Confirmation:</label>
+                <span>{reservation.confirmation}</span>
+              </div>
+            </li>
+          ))}
+        </ul>
+      </div>
     </div>
   );
 }
