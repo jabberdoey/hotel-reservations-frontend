@@ -1,6 +1,6 @@
 ## Prerequisites
 
-This frontend app requires the [backend](https://github.com/rabyyuson/hotel-reservations) service to be running. To do so create a `.env` file and add in the following:
+This frontend app requires the [backend](https://github.com/rabyyuson/hotel-reservations-backend) service to be running. To do so create a `.env` file and add in the following:
 
 ```bash
 BACKEND_API=http://localhost:3000/api/v1/reservations
