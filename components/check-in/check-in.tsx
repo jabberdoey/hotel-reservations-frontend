@@ -83,48 +83,60 @@ export default function CheckIn({
         setConfirmation(data.confirmation);
         setAssignedRoom(data.room);
       }}>
-        <div className="my-5">
-          <label className="text-xs uppercase font-semibold text-slate-400">Available rooms:</label>
-          <p className="font-semibold">{availableRooms.length}</p>
-        </div>
-        <div className="my-5">
-          <label className="text-xs uppercase font-semibold text-slate-400">Name</label>
+        <div className="grid grid-rows-2 grid-flow-col gap-5">
           <div>
-            <input
-              required
-              className="border border-[#ddd] px-[10px] py-[5px] rounded-[5px] text-black"
-              type="text"
-              placeholder="Enter name"
-              value={name}
-              onChange={(event) => { setName(event.target.value) }}
-            />
+            <label className="text-xs uppercase font-semibold text-slate-400">Check in</label>
+            <div className="date-picker">
+              <DatePicker
+                className="text-center"
+                selected={checkInDate}
+                onChange={(date) => setCheckInDate(date)}
+                minDate={today}
+              />
+            </div>
+          </div>
+          <div>
+            <label className="text-xs uppercase font-semibold text-slate-400">Name</label>
+            <div>
+              <input
+                required
+                className="text-center border border-[#ddd] px-[10px] py-[5px] rounded-[5px] text-black"
+                type="text"
+                placeholder="Enter name"
+                value={name}
+                onChange={(event) => { setName(event.target.value) }}
+              />
+            </div>
+          </div>
+          <div>
+            <label className="text-xs uppercase font-semibold text-slate-400">Check out</label>
+            <div className="date-picker">
+              <DatePicker
+                className="text-center"
+                selected={checkOutDate}
+                onChange={(date) => setCheckOutDate(date)}
+                minDate={tomorrow}
+              />
+            </div>
+          </div>
+          <div>
+            <label className="text-xs uppercase font-semibold text-slate-400">Rooms</label>
+            <div>
+              <input
+                required
+                className="text-center bg-gray-300 border border-gray-300 px-[10px] py-[5px] rounded-[5px] text-black"
+                type="text"
+                disabled
+                value={availableRooms.length}
+              />
+            </div>
           </div>
         </div>
-        <div className="my-5">
-          <label className="text-xs uppercase font-semibold text-slate-400">Check in</label>
-          <div className="date-picker">
-            <DatePicker
-              selected={checkInDate}
-              onChange={(date) => setCheckInDate(date)}
-              minDate={today}
-            />
-          </div>
-        </div>
-        <div className="my-5">
-          <label className="text-xs uppercase font-semibold text-slate-400">Check out</label>
-          <div className="date-picker">
-            <DatePicker
-              selected={checkOutDate}
-              onChange={(date) => setCheckOutDate(date)}
-              minDate={tomorrow}
-            />
-          </div>
-        </div>
-        <div className="mt-10">
-          <button className="font-semibold bg-blue-600 text-white px-4 py-2 rounded-[5px] hover:bg-blue-900">
-            Check in
-          </button>
-        </div>
+        <button
+          className="mt-10 font-semibold flex w-full justify-center text-center py-2 px-4 gap-2 rounded-[5px] text-sm bg-indigo-700 text-white hover:bg-indigo-500"
+        >
+          Check in
+        </button>
       </form>
     </div>
   );

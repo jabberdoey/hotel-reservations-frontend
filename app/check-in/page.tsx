@@ -18,14 +18,8 @@ export default async function Page() {
   }
 
   return (
-    <div className="container mx-auto p-10">
+    <div className="container mx-auto mt-10">
       <div className="flex flex-col items-center justify-center">
-        <a
-          href="/"
-          className="text-blue-600 underline hover:text-blue-800"
-        >
-          &larr; Go back
-        </a>
         <CheckIn
           reservations={reservations}
           onFormSubmit={handleOnFormSubmit}
