@@ -1,28 +1,35 @@
-import Link from "next/link";
+"use server";
+
+import CheckIn from "@/components/check-in/check-in"
+import { ReservationData } from "@/lib/types/types";
+import { fetchReservations, checkIn } from "@/lib/actions/actions";
 
 export default async function Page() {
+  const reservations = await fetchReservations();
+
+  async function handleOnFormSubmit(data: ReservationData) {
+    "use server";
+
+    const reservation = await checkIn(data);
+    return {
+      room: reservation.data.room,
+      confirmation: reservation.data.confirmation,
+    };
+  }
+
   return (
-    <div className="container mx-auto p-10 text-center">
-      <h1 className="text-2xl md:text-3xl font-bold">Please select an option:</h1>
-      <div className="flex flex-col gap-5 items-center justify-center mt-10">
-        <Link
-          href="/check-in"
-          className="w-1/2 border border-black rounded-[5px] px-10 py-5 hover:bg-black hover:text-white"
+    <div className="container mx-auto p-10">
+      <div className="flex flex-col items-center justify-center">
+        <a
+          href="/"
+          className="text-blue-600 underline hover:text-blue-800"
         >
-          Check in
-        </Link>
-        <Link
-          href="/check-out"
-          className="w-1/2 border border-black rounded-[5px] px-10 py-5 hover:bg-black hover:text-white"
-        >
-          Check out
-        </Link>
-        <Link
-          href="/view-reservations"
-          className="w-1/2 border border-black rounded-[5px] px-10 py-5 hover:bg-black hover:text-white"
-        >
-          See all reservations
-        </Link>
+          &larr; Go back
+        </a>
+        <CheckIn
+          reservations={reservations}
+          onFormSubmit={handleOnFormSubmit}
+        />
       </div>
     </div>
   );
