@@ -144,10 +144,9 @@ export default function CheckIn({
             <label className="text-xs uppercase font-semibold text-slate-400">Available Rooms</label>
             <div>
               <input
-                required
-                className="text-center bg-gray-300 border border-gray-300 px-[10px] py-[5px] rounded-[5px] text-black"
-                type="text"
                 disabled
+                className="text-center border border-[#545964] px-[10px] py-[5px]  rounded-[5px] text-black"
+                type="text"
                 value={availableRooms.length}
               />
             </div>
