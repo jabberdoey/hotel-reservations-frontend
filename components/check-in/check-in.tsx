@@ -38,28 +38,49 @@ export default function CheckIn({
 
   if (confirmation && assignedRoom) {
     return (
-      <div className="text-2xl text-center leading-10 mt-10">
-        <p className="font-bold">Reservation confirmed!</p>
-        <p className="font-normal text-lg">Please save the following for your reference:</p>
-        <div className="mt-10">
-          <div className="flex flex-col items-center justify-center my-5">
-            <label className="mb-5 uppercase text-sm font-bold">Name:</label>
-            <span className="bg-slate-200 px-20 py-5 text-red-500 font-extrabold">
-              {name}
-            </span>
+      <div>
+        <div className="text-center text-slate-400 border-b-[1px] border-gray-800 pb-5 mb-5 -mx-5">
+          <p className="font-bold text-xl">Reservation confirmed!</p>
+          <p className="text-sm">Please save the following information for your reference.</p>
+        </div>
+        <div className="flex flex-row gap-5">
+          <div>
+            <label className="text-xs uppercase font-semibold text-slate-400">Name</label>
+            <div>
+              <input
+                disabled
+                className="text-center border border-[#545964] px-[10px] py-[5px]  rounded-[5px] text-black"
+                type="text"
+                value={name}
+              />
+            </div>
           </div>
-          <div className="flex flex-col items-center justify-center my-5">
-            <label className="mb-5 uppercase text-sm font-bold">Room:</label>
-            <span className="bg-slate-200 px-20 py-5 text-red-500 font-extrabold">
-              {assignedRoom}
-            </span>
+          <div>
+            <label className="text-xs uppercase font-semibold text-slate-400">Room</label>
+            <div>
+              <input
+                disabled
+                className="text-center border border-[#545964] px-[10px] py-[5px]  rounded-[5px] text-black"
+                type="text"
+                value={assignedRoom}
+              />
+            </div>
           </div>
-          <div className="flex flex-col items-center justify-center my-5">
-            <label className="mb-5 uppercase text-sm font-bold">Code:</label>
-            <span className="bg-slate-200 px-20 py-5 text-red-500 font-extrabold">
-              {confirmation}
-            </span>
+        </div>
+        <div>
+        <div className="flex flex-row w-full mt-5">
+          <div className="w-full">
+            <label className="text-xs uppercase font-semibold text-slate-400">Confirmation</label>
+            <div>
+              <input
+                disabled
+                className="w-full flex text-center border border-[#545964] px-[10px] py-[5px] rounded-[5px] text-black"
+                type="text"
+                value={confirmation}
+              />
+            </div>
           </div>
+        </div>
         </div>
       </div>
     );
@@ -120,7 +141,7 @@ export default function CheckIn({
             </div>
           </div>
           <div>
-            <label className="text-xs uppercase font-semibold text-slate-400">Rooms</label>
+            <label className="text-xs uppercase font-semibold text-slate-400">Available Rooms</label>
             <div>
               <input
                 required

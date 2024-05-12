@@ -15,18 +15,18 @@ export default function CheckOut({
   switch(status) {
     case "Available": {
       return (
-        <div className="text-2xl text-center leading-10 mt-10">
-          <p className="font-bold">You have successfully checked out!</p>
-          <p className="font-normal text-lg mb-16">Book with us again soon.</p>
+        <div className="text-center mt-5 text-slate-400">
+          <p className="font-bold text-xl mb-5">You have successfully checked out!</p>
+          <p className="text-sm mb-5">Book with us again soon.</p>
         </div>
       );
     }
 
     case "Error": {
       return (
-        <div className="text-2xl text-center leading-10 mt-10">
-          <p className="font-bold text-red-600">Booking information not found!</p>
-          <p className="font-normal text-lg mb-16">Please check your input values and then try again.</p>
+        <div className="text-center mt-5 text-slate-400">
+          <p className="font-bold text-xl mb-5">Booking information not found!</p>
+          <p className="text-sm mb-5">Please check your input values and then try again.</p>
         </div>
       );
     }

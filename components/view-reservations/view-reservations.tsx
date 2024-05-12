@@ -13,20 +13,20 @@ export default function ViewReservations({
 
   if (filteredReservations.length === 0) {
     return (
-      <div className="text-center mt-10 text-slate-400">
+      <div className="text-center mt-5 text-slate-400">
         <p className="font-bold text-xl mb-5">No reservations found!</p>
-        <p className="text-sm mb-10">Please make a reservation and then try again.</p>
+        <p className="text-sm mb-5">Please make a reservation and then try again.</p>
       </div>
     );
   }
 
   return (
     <div className="max-h-[320px] overflow-y-scroll">
-      <ul className="flex flex-col gap-5">
+      <ul className="flex flex-col gap-5 -mt-5">
         {filteredReservations.map((reservation, index) => (
           <li
             key={index}
-            className="grid grid-cols-2 grid-flow-row gap-5 border-b-[1px] border-gray-800 pb-10"
+            className="grid grid-cols-2 grid-flow-row gap-5 border-t-[1px] border-gray-800 pt-5"
           >
             <div>
               <label className="text-xs uppercase font-semibold text-slate-400">Name</label>
