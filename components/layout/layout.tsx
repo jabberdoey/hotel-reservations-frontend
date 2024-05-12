@@ -33,34 +33,37 @@ export default function Layout({
   ];
 
   return (
-    <div className="flex flex-row w-screen h-screen bg-[url('/background.jpg')] bg-center bg-cover">
+    <div className="flex flex-row w-screen h-screen bg-[url('/background.jpg')] bg-bottom bg-cover relative">
       <div className="container mx-auto mt-10 mb-auto text-center bg-gray-900 p-5 rounded-lg w-auto min-w-[464px]">
-        <div className="border-b-[1px] border-gray-800 pb-5 -mx-5">
-          <ul className="flex flex-row gap-5 items-center justify-center">
-            {links.map((link, index) => {
-              const linkProps = {
-                href: link.url,
-                className: clsx(
-                  "flex flex-row items-center justify-center py-2 px-4 gap-2 rounded-lg text-sm",
-                  pathname === link.url
-                    ? "border border-indigo-700 bg-indigo-700 text-white"
-                    : "text-gray-400 border border-slate-700 hover:bg-gray-700 hover:border-gray-700 hover:text-white",
-                )
-              }
+        <div className="relative z-10">
+          <div className="border-b-[1px] border-gray-800 pb-5 -mx-5">
+            <ul className="flex flex-row gap-5 items-center justify-center">
+              {links.map((link, index) => {
+                const linkProps = {
+                  href: link.url,
+                  className: clsx(
+                    "flex flex-row items-center justify-center py-2 px-4 gap-2 rounded-lg text-sm",
+                    pathname === link.url
+                      ? "border border-indigo-700 bg-indigo-700 text-white"
+                      : "text-gray-400 border border-slate-700 hover:bg-gray-700 hover:border-gray-700 hover:text-white",
+                  )
+                }
 
-              return (
-                <li key={index}>
-                  {
-                    link.url === "/view-reservations"
-                      ? <a {...linkProps}>{link.component}{" "}{link.label}</a>
-                      : <Link {...linkProps}>{link.component}{" "}{link.label}</Link>
-                  }
-                </li>
-              )
-            })}
-          </ul>
+                return (
+                  <li key={index}>
+                    {
+                      link.url === "/view-reservations"
+                        ? <a {...linkProps}>{link.component}{" "}{link.label}</a>
+                        : <Link {...linkProps}>{link.component}{" "}{link.label}</Link>
+                    }
+                  </li>
+                )
+              })}
+            </ul>
+          </div>
+          {children}
         </div>
-        {children}
+        <div className="w-full h-full absolute top-0 left-0 bg-black z-0 opacity-35"></div>
       </div>
     </div>
   );
