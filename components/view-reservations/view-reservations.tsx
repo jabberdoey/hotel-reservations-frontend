@@ -13,9 +13,9 @@ export default function ViewReservations({
 
   if (filteredReservations.length === 0) {
     return (
-      <div className="text-2xl text-center leading-10 mt-10">
-        <p className="font-bold">No reservations found!</p>
-        <p className="font-normal text-lg mb-16">Please make a reservation and then try again.</p>
+      <div className="text-center mt-10 text-slate-400">
+        <p className="font-bold text-xl mb-5">No reservations found!</p>
+        <p className="text-sm mb-10">Please make a reservation and then try again.</p>
       </div>
     );
   }

@@ -34,7 +34,7 @@ export default function Layout({
 
   return (
     <div className="flex flex-row w-screen h-screen bg-[url('/background.jpg')] bg-center bg-cover">
-      <div className="container mx-auto mt-10 mb-auto text-center bg-gray-900 p-5 rounded-lg w-auto">
+      <div className="container mx-auto mt-10 mb-auto text-center bg-gray-900 p-5 rounded-lg w-auto min-w-[464px]">
         <div className="border-b-[1px] border-gray-800 pb-5 -mx-5">
           <ul className="flex flex-row gap-5 items-center justify-center">
             {links.map((link, index) => {
