@@ -29,9 +29,9 @@ export default function CheckIn({
   const availableRooms = reservations.filter(reservation => reservation.status === "Available");
   if (availableRooms.length === 0) {
     return (
-      <div className="font-bold text-2xl text-center mt-10">
-        <p>There are no rooms available right now.</p>
-        <p>Please try again at a later time.</p>
+      <div className="text-center mt-5 text-slate-400">
+        <p className="font-bold text-xl mb-5">There are no rooms available right now.</p>
+        <p className="text-sm mb-5">Please try again at a later time.</p>
       </div>
     );
   }

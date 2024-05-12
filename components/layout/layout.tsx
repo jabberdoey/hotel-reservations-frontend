@@ -34,7 +34,7 @@ export default function Layout({
 
   return (
     <div className="flex flex-row w-screen h-screen bg-[url('/background.jpg')] bg-bottom bg-cover relative">
-      <div className="container mx-auto mt-10 mb-auto text-center bg-gray-900 p-5 rounded-lg w-auto min-w-[464px]">
+      <div className="container mx-auto mt-10 mb-auto text-center bg-gray-900 p-5 rounded-lg w-auto text-sm sm:text-base min-w-[419px] sm:min-w-[464px]">
         <div className="relative z-10">
           <div className="border-b-[1px] border-gray-800 pb-5 -mx-5">
             <ul className="flex flex-row gap-5 items-center justify-center">
@@ -42,7 +42,7 @@ export default function Layout({
                 const linkProps = {
                   href: link.url,
                   className: clsx(
-                    "flex flex-row items-center justify-center py-2 px-4 gap-2 rounded-lg text-sm",
+                    "flex flex-row items-center justify-center py-2 px-4 gap-2 rounded-lg text-xs sm:text-sm",
                     pathname === link.url
                       ? "border border-indigo-700 bg-indigo-700 text-white"
                       : "text-gray-400 border border-slate-700 hover:bg-gray-700 hover:border-gray-700 hover:text-white",
