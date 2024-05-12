@@ -13,7 +13,7 @@ export default async function Page() {
   }
   
   return (
-    <div className="container mx-auto p-10">
+    <div className="container mx-auto mt-5">
       <div className="flex flex-col items-center justify-center">
         <CheckOut
           onFormSubmit={handleOnFormSubmit}

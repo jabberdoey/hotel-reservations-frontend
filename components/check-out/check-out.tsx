@@ -33,45 +33,47 @@ export default function CheckOut({
   }
 
   return (
-    <div className="transition-opacity duration-300 opacity-0 opacity-100">
+    <div>
       <form onSubmit={async (event) => { 
         event.preventDefault();
 
         const status = await onFormSubmit({ name, room: Number(room) });
         setStatus(status);
       }}>
-        <div className="my-5">
-          <label className="text-xs uppercase font-semibold text-slate-400">Name</label>
-          <div className="">
-            <input
-              required
-              className="border border-[#ddd] px-[10px] py-[5px] rounded-[5px] text-black"
-              type="text"
-              placeholder="Enter name"
-              value={name}
-              onChange={(event) => { setName(event.target.value) }}
-            />
-          </div>
-        </div>
-        <div className="my-5">
-          <label className="text-xs uppercase font-semibold text-slate-400">Room</label>
+        <div className="flex flex-row gap-5">
           <div>
-            <input
-              required
-              className="border border-[#ddd] px-[10px] py-[5px] rounded-[5px] text-black"
-              type="number"
-              min={1}
-              placeholder="Enter room"
-              value={room}
-              onChange={(event) => { setRoom(event.target.value) }}
-            />
+            <label className="text-xs uppercase font-semibold text-slate-400">Name</label>
+            <div>
+              <input
+                required
+                className="text-center border border-[#ddd] px-[10px] py-[5px] rounded-[5px] text-black"
+                type="text"
+                placeholder="Enter name"
+                value={name}
+                onChange={(event) => { setName(event.target.value) }}
+              />
+            </div>
+          </div>
+          <div>
+            <label className="text-xs uppercase font-semibold text-slate-400">Room</label>
+            <div>
+              <input
+                required
+                className="text-center border border-gray-300 px-[10px] py-[5px] rounded-[5px] text-black"
+                type="number"
+                min={1}
+                placeholder="Enter room"
+                value={room}
+                onChange={(event) => { setRoom(event.target.value) }}
+              />
+            </div>
           </div>
         </div>
-        <div className="mt-10">
-          <button className="font-semibold bg-blue-600 text-white px-4 py-2 rounded-[5px] hover:bg-blue-900">
-            Check out
-          </button>
-        </div>
+        <button
+          className="mt-5 font-semibold flex w-full justify-center text-center py-2 px-4 gap-2 rounded-[5px] text-sm bg-indigo-700 text-white hover:bg-indigo-500"
+        >
+          Submit
+        </button>
       </form>
     </div>
   );

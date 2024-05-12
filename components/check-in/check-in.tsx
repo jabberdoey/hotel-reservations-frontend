@@ -133,9 +133,9 @@ export default function CheckIn({
           </div>
         </div>
         <button
-          className="mt-10 font-semibold flex w-full justify-center text-center py-2 px-4 gap-2 rounded-[5px] text-sm bg-indigo-700 text-white hover:bg-indigo-500"
+          className="mt-5 font-semibold flex w-full justify-center text-center py-2 px-4 gap-2 rounded-[5px] text-sm bg-indigo-700 text-white hover:bg-indigo-500"
         >
-          Check in
+          Submit
         </button>
       </form>
     </div>
