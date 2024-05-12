@@ -21,57 +21,71 @@ export default function ViewReservations({
   }
 
   return (
-    <div>
-      <table className="view-reservations mt-10 hidden md:block">
-        <thead>
-          <tr>
-            <th scope="col">Name</th>
-            <th scope="col">Room</th>
-            <th scope="col">Check in</th>
-            <th scope="col">Check out</th>
-            <th scope="col">Confirmation</th>
-          </tr>
-        </thead>
-        <tbody>
-          {filteredReservations.map((reservation, index) => (
-            <tr key={index}>
-              <td>{reservation.name}</td>
-              <td>{reservation.room}</td>
-              <td>{format(reservation.checkInDate, "MMMM d, yyyy")}</td>
-              <td>{format(reservation.checkOutDate, "MMMM d, yyyy")}</td>
-              <td>{reservation.confirmation}</td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
-      <div className="md:hidden mt-10">
-        <ul>
-          {filteredReservations.map((reservation, index) => (
-            <li className="p-5 rounded-lg gap-2 flex flex-col border items-left justify-center mb-5" key={index}>
+    <div className="max-h-[320px] overflow-y-scroll">
+      <ul className="flex flex-col gap-5">
+        {filteredReservations.map((reservation, index) => (
+          <li
+            key={index}
+            className="grid grid-cols-2 grid-flow-row gap-5 border-b-[1px] border-gray-800 pb-10"
+          >
+            <div>
+              <label className="text-xs uppercase font-semibold text-slate-400">Name</label>
               <div>
-                <label className="uppercase font-bold mr-2 text-sm uppercase text-slate-600">Name:</label>
-                <span>{reservation.name}</span>
+                <input
+                  disabled
+                  className="text-center border border-[#545964] px-[10px] py-[5px]  rounded-[5px] text-black"
+                  type="text"
+                  value={reservation.name}
+                />
               </div>
+            </div>
+            <div>
+              <label className="text-xs uppercase font-semibold text-slate-400">Room</label>
               <div>
-                <label className="uppercase font-bold mr-2 text-sm uppercase text-slate-600">Room:</label>
-                <span>{reservation.room}</span>
+                <input
+                  disabled
+                  className="text-center border border-[#545964] px-[10px] py-[5px]  rounded-[5px] text-black"
+                  type="text"
+                  value={reservation.room}
+                />
               </div>
+            </div>
+            <div>
+              <label className="text-xs uppercase font-semibold text-slate-400">Check in</label>
               <div>
-                <label className="uppercase font-bold mr-2 text-sm uppercase text-slate-600">Check in:</label>
-                <span>{format(reservation.checkInDate, "MMMM d, yyyy")}</span>
+                <input
+                  disabled
+                  className="text-center border border-[#545964] px-[10px] py-[5px]  rounded-[5px] text-black"
+                  type="text"
+                  value={format(reservation.checkInDate, "MMMM d, yyyy")}
+                />
               </div>
+            </div>
+            <div>
+              <label className="text-xs uppercase font-semibold text-slate-400">Check out</label>
               <div>
-                <label className="uppercase font-bold mr-2 text-sm uppercase text-slate-600">Check out:</label>
-                <span>{format(reservation.checkOutDate, "MMMM d, yyyy")}</span>
+                <input
+                  disabled
+                  className="text-center border border-[#545964] px-[10px] py-[5px]  rounded-[5px] text-black"
+                  type="text"
+                  value={format(reservation.checkOutDate, "MMMM d, yyyy")}
+                />
               </div>
+            </div>
+            <div>
+              <label className="text-xs uppercase font-semibold text-slate-400">Confirmation</label>
               <div>
-                <label className="uppercase font-bold mr-2 text-sm uppercase text-slate-600">Confirmation:</label>
-                <span>{reservation.confirmation}</span>
+                <input
+                  disabled
+                  className="text-center border border-[#545964] px-[10px] py-[5px]  rounded-[5px] text-black"
+                  type="text"
+                  value={reservation.confirmation}
+                />
               </div>
-            </li>
-          ))}
-        </ul>
-      </div>
+            </div>
+          </li>
+        ))}
+      </ul>
     </div>
   );
 }
