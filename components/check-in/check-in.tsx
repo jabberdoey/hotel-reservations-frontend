@@ -39,17 +39,17 @@ export default function CheckIn({
   if (confirmation && assignedRoom) {
     return (
       <div>
-        <div className="text-center text-slate-400 border-b-[1px] border-gray-800 pb-5 mb-5 -mx-5">
+        <div className="px-10 text-center text-slate-400 border-b-[1px] border-gray-800 pb-5 mb-5 -mx-5">
           <p className="font-bold text-xl">Reservation confirmed!</p>
           <p className="text-sm">Please save the following information for your reference.</p>
         </div>
-        <div className="flex flex-row gap-5">
+        <div className="flex flex-col sm:flex-row gap-5">
           <div>
             <label className="text-xs uppercase font-semibold text-slate-400">Name</label>
             <div>
               <input
                 disabled
-                className="text-center border border-[#545964] px-[10px] py-[5px]  rounded-[5px] text-black"
+                className="w-full sm:w-auto text-center border border-[#545964] px-[10px] py-[5px]  rounded-[5px] text-black"
                 type="text"
                 value={name}
               />
@@ -60,7 +60,7 @@ export default function CheckIn({
             <div>
               <input
                 disabled
-                className="text-center border border-[#545964] px-[10px] py-[5px]  rounded-[5px] text-black"
+                className="w-full sm:w-auto text-center border border-[#545964] px-[10px] py-[5px]  rounded-[5px] text-black"
                 type="text"
                 value={assignedRoom}
               />
@@ -104,7 +104,7 @@ export default function CheckIn({
         setConfirmation(data.confirmation);
         setAssignedRoom(data.room);
       }}>
-        <div className="grid grid-rows-2 grid-flow-col gap-5">
+        <div className="flex flex-col sm:grid sm:grid-rows-2 sm:grid-flow-col gap-5">
           <div>
             <label className="text-xs uppercase font-semibold text-slate-400">Check in</label>
             <div className="date-picker">

@@ -40,7 +40,7 @@ export default function CheckOut({
         const status = await onFormSubmit({ name, room: Number(room) });
         setStatus(status);
       }}>
-        <div className="flex flex-row gap-5">
+        <div className="flex flex-col sm:flex-row gap-5">
           <div>
             <label className="text-xs uppercase font-semibold text-slate-400">Name</label>
             <div>

@@ -26,7 +26,7 @@ export default function ViewReservations({
         {filteredReservations.map((reservation, index) => (
           <li
             key={index}
-            className="grid grid-cols-2 grid-flow-row gap-5 border-t-[1px] border-gray-800 pt-5"
+            className="flex flex-col sm:flex-none sm:grid sm:grid-cols-2 sm:grid-flow-row gap-5 border-t-[1px] border-gray-800 pt-5"
           >
             <div>
               <label className="text-xs uppercase font-semibold text-slate-400">Name</label>
